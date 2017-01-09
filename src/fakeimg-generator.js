@@ -6,16 +6,15 @@ class FakeImgGenerator {
   static get default_provider() { return FakeImgGenerator.providers[0] }
   
   static generate(provider, ...params) {
-    if(!~FakeImgGenerator.providers.indexOf(provider))
-      throw new fakeImgError(1)
-    
-    return new (require(`./providers/${provider}.js`))(...params)
+    return ~FakeImgGenerator.providers.indexOf(provider)
+      ? new (require(`./providers/${provider}.js`))(...params)
+      : new fakeImgError(1)
   }
   
   constructor(...params) {
-    if(!~FakeImgGenerator.providers.indexOf(params[0]))
-      throw new fakeImgError(1)
-    return FakeImgGenerator.generate(params.shift(), ...params)
+    return ~FakeImgGenerator.providers.indexOf(params[0])
+      ? FakeImgGenerator.generate(params.shift(), ...params)
+      : new fakeImgError(1)
   }
 }
 

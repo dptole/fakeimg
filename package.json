@@ -1,0 +1,37 @@
+{
+  "name": "fakeimg",
+  "version": "1.0.0",
+  "description": "Fake image URLs generator.",
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dptole/fakeimg.git"
+  },
+  "devDependencies": {
+    "mocha": "3.2.0"
+  },
+  "keywords": [
+    "image",
+    "fake",
+    "dummy",
+    "generate",
+    "img",
+    "create",
+    "temp",
+    "temporary",
+    "link",
+    "url"
+  ],
+  "author": "Dan <danillo.paiva.toledo@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dptole/fakeimg/issues"
+  },
+  "homepage": "https://github.com/dptole/fakeimg#readme"
+}

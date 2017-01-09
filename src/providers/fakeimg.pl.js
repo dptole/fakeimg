@@ -27,7 +27,7 @@ class FakeImg {
   
   setProperties(properties = {
       width, height, text, fontName, fontSize, retina,
-      background, backgroundAlpha, foreground, foregroundAlpha
+      background, background_alpha, foreground, foreground_alpha
   }) {
     Object.keys(properties).forEach(
       property => this.setProperty(property, properties[property])
@@ -54,8 +54,7 @@ class FakeImg {
   }
   
   generate(properties = {}) {
-    this.setProperties(properties)
-    return this.getFqdn() + this.getUrlProperties() + this.getQueryStringProperties()
+    return this.setProperties(properties).getFqdn() + this.getUrlProperties() + this.getQueryStringProperties()
   }
   
   getFqdn() {
