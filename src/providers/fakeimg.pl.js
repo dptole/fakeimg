@@ -1,7 +1,6 @@
 
 class FakeImg {
   static get domain() { return 'fakeimg.pl' }
-  
   static get protocol() { return 'https' }
   
   static get urlProperties() {
