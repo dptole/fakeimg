@@ -1,7 +1,7 @@
 
 require('should');
-
 var assert = require('assert');
+
 var fakeImgGenerator = require(__dirname + '/../src/fakeimg.js').generator;
 var fakeImgError = require(__dirname + '/../src/fakeimg-error.js');
 
@@ -18,7 +18,7 @@ describe('fakeimg-generator tests', function() {
     assert.doesNotThrow(
       function() {
         fakeImgGenerator.providers.forEach(function(provider) {
-          provider.should.be.an.String();
+          provider.should.be.a.String();
         });
       }
     );
