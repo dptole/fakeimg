@@ -30,6 +30,10 @@
     "url"
   ],
   "author": "Dan <danillo.paiva.toledo@gmail.com>",
+  "files": [
+    "src/",
+    "index.js"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/dptole/fakeimg/issues"
