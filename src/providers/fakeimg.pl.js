@@ -34,6 +34,15 @@ class FakeImg {
     return this
   }
   
+  getProperties(property) {
+    return this.properties
+  }
+  
+  clearProperties() {
+    this.properties = {}
+    return this
+  }
+  
   setProperty(property, value) {
     if(~FakeImg.properties.indexOf(property))
       this.properties[property] = value
@@ -42,10 +51,6 @@ class FakeImg {
   
   getProperty(property) {
     return this.properties[property]
-  }
-  
-  getProperties(property) {
-    return this.properties
   }
   
   hasProperty(property) {
@@ -62,14 +67,20 @@ class FakeImg {
   
   getUrlProperties() {
     return [
-      this.getProperty('width') && this.getProperty('width')
-        + (this.hasProperty('height') ? 'x' + this.getProperty('height')                     : ''),
+      this.getProperty('width') ?
+        this.getProperty('width')
+          + (this.hasProperty('height') ? 'x' + this.getProperty('height') : '')
+        : '300x250,128',
       
-      this.getProperty('background') && this.getProperty('background')
-        + (this.hasProperty('background_alpha') ? ',' + this.getProperty('background_alpha') : ''),
+      this.getProperty('background') ?
+        this.getProperty('background')
+          + (this.hasProperty('background_alpha') ? ',' + this.getProperty('background_alpha') : '')
+        : 'f00',
       
-      this.getProperty('foreground') && this.getProperty('foreground')
-        + (this.hasProperty('foreground_alpha') ? ',' + this.getProperty('foreground_alpha') : '')
+      this.getProperty('foreground') ?
+        this.getProperty('foreground')
+          + (this.hasProperty('foreground_alpha') ? ',' + this.getProperty('foreground_alpha') : '')
+        : '000'
     ].map(
       encodeURIComponent
     ).filter(
