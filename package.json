@@ -1,6 +1,6 @@
 {
   "name": "fakeimg",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Fake image URLs generator.",
   "directories": {
     "example": "examples",
@@ -32,6 +32,7 @@
   "author": "Dan <danillo.paiva.toledo@gmail.com>",
   "files": [
     "src/",
+    "LICENSE",
     "index.js"
   ],
   "license": "MIT",
