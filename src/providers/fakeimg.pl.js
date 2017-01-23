@@ -70,12 +70,12 @@ class FakeImg {
       this.getProperty('width') ?
         this.getProperty('width')
           + (this.hasProperty('height') ? 'x' + this.getProperty('height') : '')
-        : '300x250,128',
+        : '300x250',
       
       this.getProperty('background') ?
         this.getProperty('background')
           + (this.hasProperty('background_alpha') ? ',' + this.getProperty('background_alpha') : '')
-        : 'f00',
+        : 'f00,128',
       
       this.getProperty('foreground') ?
         this.getProperty('foreground')
