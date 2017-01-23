@@ -9,4 +9,4 @@ dependencies:
 general:
   branches:
     only:
-      master
+      - master
