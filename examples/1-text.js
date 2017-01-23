@@ -34,5 +34,5 @@ console.log(fkimg.getProperties())
 // "https://fakeimg.pl/500x456/f00%2C181/00ff00%2C128?&text=Hey%20fake%20img&font_name=museo&font_size=100&retina"
 console.log(fkimg.generate({height: 456}))
 
-// "https://fakeimg.pl/300x250/f00,128/000"
+// "https://fakeimg.pl/300x250/f00%2C128/000"
 console.log(fkimg.clearProperties().generate())
