@@ -33,11 +33,15 @@
   "files": [
     "src/",
     "LICENSE",
+    "README.md",
     "index.js"
   ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/dptole/fakeimg/issues"
   },
-  "homepage": "https://github.com/dptole/fakeimg#readme"
+  "homepage": "https://github.com/dptole/fakeimg#readme",
+  "engines": {
+    "node": ">= 6.5.0"
+  }
 }
