@@ -1,9 +1,9 @@
 {
   "name": "fakeimg",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Fake image URLs generator.",
   "directories": {
-    "example": "examples",
+    "example": "example",
     "test": "test"
   },
   "scripts": {
@@ -42,6 +42,6 @@
   },
   "homepage": "https://github.com/dptole/fakeimg#readme",
   "engines": {
-    "node": ">= 6.5.0"
+    "node": ">= 7.5.0"
   }
 }

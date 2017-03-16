@@ -3,6 +3,15 @@ class FakeImg {
   static get domain() { return 'fakeimg.pl' }
   static get protocol() { return 'https' }
   
+  static get defaults() {
+    return {
+      width: 300,
+      height: 250,
+      background: 'cccccc',
+      foreground: '909090'
+    }
+  }
+
   static get urlProperties() {
     return [
       'width', 'height', 'background', 'background_alpha', 'foreground', 'foreground_alpha'
@@ -20,14 +29,11 @@ class FakeImg {
   }
   
   constructor(properties = {}) {
-    this.properties = {}
+    this.clearProperties();
     this.setProperties(properties)
   }
   
-  setProperties(properties = {
-      width, height, text, fontName, fontSize, retina,
-      background, background_alpha, foreground, foreground_alpha
-  }) {
+  setProperties(properties) {
     Object.keys(properties).forEach(
       property => this.setProperty(property, properties[property])
     )
@@ -39,7 +45,12 @@ class FakeImg {
   }
   
   clearProperties() {
-    this.properties = {}
+    this.properties = {
+      width: FakeImg.defaults.width,
+      height: FakeImg.defaults.height,
+      background: FakeImg.defaults.background,
+      foreground: FakeImg.defaults.foreground
+    }
     return this
   }
   
@@ -70,30 +81,32 @@ class FakeImg {
       this.getProperty('width') ?
         this.getProperty('width')
           + (this.hasProperty('height') ? 'x' + this.getProperty('height') : '')
-        : '300x250',
+        : FakeImg.defaults.width + 'x' + FakeImg.defaults.height,
       
       this.getProperty('background') ?
         this.getProperty('background')
           + (this.hasProperty('background_alpha') ? ',' + this.getProperty('background_alpha') : '')
-        : 'f00,128',
+        : FakeImg.defaults.background,
       
       this.getProperty('foreground') ?
         this.getProperty('foreground')
           + (this.hasProperty('foreground_alpha') ? ',' + this.getProperty('foreground_alpha') : '')
-        : '000'
+        : FakeImg.defaults.foreground
     ].map(
       encodeURIComponent
     ).filter(
       id => id
-    ).join('/')
+    ).join('/') + '/'
   }
   
   getQueryStringProperties() {
     return FakeImg.queryStringProperties.map(
       qs => this.hasProperty(qs) &&
         qs + (qs !== 'retina' ? '=' + encodeURIComponent(this.getProperty(qs)) : '')
+    ).filter(
+      id => id
     ).reduce(
-      (acc, qs) => acc.concat(qs && acc.length === 0 ? ['?', qs] : [qs]),
+      (acc, qs, _, array) => acc.concat(qs && acc.length === 0 ? (array.length > 0 ? '?' : '') + qs : qs),
       []
     ).filter(
       id => id
