@@ -42,7 +42,7 @@ function colorContract(options) {
   }
 }
 
-fakeimgPl.url_pattern = 'https://fakeimg.pl/{size}/{background}/{foreground}?text={text}&font_name={font_name}&font_size={font_size}&{retina}'
+fakeimgPl.url_pattern = 'https://fakeimg.pl/{size}/{background}/{foreground}/?text={text}&font_name={font_name}&font_size={font_size}&{retina}'
 
 fakeimgPl.contract = {
   mandatory: ['size'],
