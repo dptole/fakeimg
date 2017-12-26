@@ -3,6 +3,9 @@ machine:
     version: 7.5.0
 
 dependencies:
+  pre:
+    - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+
   override:
     - npm install --only=dev
     
@@ -10,3 +13,10 @@ general:
   branches:
     only:
       - master
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - npm publish
+
