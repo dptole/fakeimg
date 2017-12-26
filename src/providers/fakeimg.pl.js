@@ -78,7 +78,7 @@ fakeimgPl.contract = {
     }),
     text(value, provided, all_options, valids) {
       if(!provided)
-        return valids.size.width + 'x' + valids.size.height
+        return {value: valids.size.width + 'x' + valids.size.height}
 
       if(!util.isString(value))
         throw new Error('Invalid text')
