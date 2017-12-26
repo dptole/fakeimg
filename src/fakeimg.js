@@ -1,7 +1,9 @@
 
 const fakeimg = {
-  use: name => options =>
-    require('./features.js')(require('./sanitize.js')(require(`./providers/${name}.js`))(options))
+  use: name => {
+    const provider_module = require(`./providers/${name}.js`)
+    return options => require('./features.js')(require('./sanitize.js')(provider_module)(options))
+  }
 }
 
 module.exports = Object.create(fakeimg)

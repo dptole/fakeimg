@@ -1,13 +1,13 @@
 {
   "name": "fakeimg",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "Fake image URLs generator.",
   "directories": {
     "example": "example",
     "test": "test"
   },
   "scripts": {
-    "test": "mocha test/"
+    "test": "mocha -b -t 30000"
   },
   "repository": {
     "type": "git",

@@ -15,6 +15,7 @@ try {
   generated_img.download().then(response => {
     console.log('Downloaded')
     console.log('Status code', response.statusCode)
+    console.log('Response headers', response.headers)
   })
 } catch(error) {
   console.log(error)

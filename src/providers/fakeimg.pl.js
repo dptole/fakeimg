@@ -48,7 +48,7 @@ fakeimgPl.contract = {
   mandatory: ['size'],
   validate: {
     size(value, provided, all_options, valids) {
-      if(/^([1-9]\d*)(?:x([1-9]\d*))?$/.test(value))
+      if(/^([1-9]\d*)(?:x([1-9]\d*))?$/.test(value) && Math.max(RegExp.$1, RegExp.$2 || 0) <= 4000)
         return {
           width: RegExp.$1,
           height: RegExp.$2 || RegExp.$1,

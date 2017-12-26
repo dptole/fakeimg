@@ -1,81 +1,61 @@
 
-require('should');
+const fs = require('fs')
+    , should = require('should')
+    , fakeimg = require('../')
+    , url = require('url')
 
-var fs = require('fs');
-var assert = require('assert');
+describe('providers modules', () => {
+  fs.readdirSync('src/providers').forEach(provider => {
+    const provider_name = provider.replace(/\.js$/, '')
+        , provider_instance = fakeimg.use(provider_name)
+        , provider_module = require('../src/providers/' + provider)
 
-fs.readdirSync(__dirname + '/../src/providers/').forEach(function(provider) {
-  var imgProvider = require(__dirname + '/../src/providers/' + provider);
-  var instance;
+    describe(provider, () => {
+      it('should be a function', () => {
+        provider_module.should.be.a.Function()
+      })
 
-  describe(provider + ' tests', function() {
-    it('should check for a "class"', function() {
-      imgProvider.should.be.a.Function();
-    });
-    
-    it('should check for "domain" static property', function() {
-      imgProvider.should.have.property('domain');
-    });
-    
-    it('should check for "protocol" static property', function() {
-      imgProvider.should.have.property('protocol');
-    });
-    
-    it('should check for "urlProperties" static property', function() {
-      imgProvider.should.have.property('urlProperties');
-    });
-    
-    it('should check for "queryStringProperties" static property', function() {
-      imgProvider.should.have.property('queryStringProperties');
-    });
-    
-    it('should check for "properties" static property', function() {
-      imgProvider.should.have.property('properties');
-    });
-    
-    it('should check for "defaults" static property', function() {
-      imgProvider.should.have.property('defaults');
-    });
-    
-    it('should instantiate a new ' + provider, function() {
-      assert.doesNotThrow(function() {
-        instance = new imgProvider;
-      });
-    });
-    
-    it('should generate a URL', function() {
-      assert.doesNotThrow(function() {
-        /^https?:\/\/(?:\/+)\/.+$/.test(instance.generate());
-      });
-    });
-    
-    it('should allow chaining when setting 1 property', function() {
-      assert.deepEqual(
-        instance.setProperty({}),
-        instance
-      );
-    });
-    
-    it('should allow chaining when setting many properties', function() {
-      assert.deepEqual(
-        instance.setProperties({}),
-        instance
-      );
-    });
-    
-    it('should allow chaining when cleaning properties', function() {
-      assert.deepEqual(
-        instance.clearProperties(),
-        instance
-      );
-    });
-    
-    it('should check for properties', function() {
-      instance.hasProperty().should.be.a.Boolean();
-    });
-    
-    it('should check for property getting', function() {
-      instance.getProperty('width').should.be.a.Number();
-    });
-  });
-});
+      it('should have property "url_pattern" as string', () => {
+        provider_module.url_pattern.should.be.a.String()
+      })
+
+      it('should not throw: new url.URL(url_pattern)', () => {
+        should.doesNotThrow(() => {
+          new url.URL(provider_module.url_pattern)
+        })
+      })
+
+      it('should have property "contract" as object', () => {
+        provider_module.contract.should.be.an.Object()
+      })
+
+      it('should have property "contract.mandatory" as array of strings', () => {
+        provider_module.contract.mandatory.should.be.an.Array()
+        provider_module.contract.mandatory.should.matchEach(field => {
+          field.should.be.a.String()
+        })
+      })
+
+      it('should have property "contract.validate" as object of functions', () => {
+        provider_module.contract.validate.should.be.an.Object()
+        provider_module.contract.validate.should.matchEach(field => {
+          field.should.be.a.Function()
+        })
+      })
+
+      it('should have "contract.mandatory" items be keys in "contract.validate"', () => {
+        provider_module.contract.mandatory.forEach(field => {
+          provider_module.contract.validate.should.have.property(field)
+        })
+      })
+
+      describe('"contract.validate" keys need to be {items} in "url_pattern"', () => {
+        Object.keys(provider_module.contract.validate).forEach(key => {
+          it('should check for item {' + key + '}', () => {
+            provider_module.url_pattern.should.match(new RegExp('\\{' + key + '\\}'))
+          })
+        })
+      })
+    })
+  })
+})
