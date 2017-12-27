@@ -1,4 +1,7 @@
 node_modules
 *.log
 *.gz
+*.png
+*.jpg
+*.gif
 todo
