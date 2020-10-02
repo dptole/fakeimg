@@ -1,5 +1,5 @@
 {
-  "name": "fakeimg",
+  "name": "@dptole/fakeimg",
   "version": "2.2.0",
   "description": "Fake image URLs generator.",
   "directories": {
