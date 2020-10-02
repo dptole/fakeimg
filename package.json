@@ -22,18 +22,13 @@
     "should": "11.1.2"
   },
   "keywords": [
-    "image",
-    "fake",
-    "dummy",
-    "generate",
-    "img",
     "create",
-    "temp",
-    "temporary",
-    "link",
-    "url"
+    "img",
+    "image",
+    "fakeimg",
+    "dummyimage"
   ],
-  "author": "Dan <danillo.paiva.toledo@gmail.com>",
+  "author": "Dan <dptoledo@pm.me>",
   "files": [
     "src/",
     "LICENSE",
