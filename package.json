@@ -1,6 +1,6 @@
 {
   "name": "fakeimg",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Fake image URLs generator.",
   "directories": {
     "example": "example",
