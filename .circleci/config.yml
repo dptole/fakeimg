@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - checkout
-      - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
-      - npm install --only=dev
-      - npm t
-      - npm publish
+      - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+      - run: npm install --only=dev
+      - run: npm t
+      - run: npm publish
