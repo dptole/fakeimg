@@ -1,0 +1,17 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:7.5.0
+
+    branches:
+      only:
+        - master
+
+    steps:
+      - checkout
+      - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+      - npm install --only=dev
+      - npm t
+      - npm publish
