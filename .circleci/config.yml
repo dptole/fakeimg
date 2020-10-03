@@ -3,6 +3,8 @@ version: 2
 jobs:
   build:
     docker:
+      # I'll have to update this every now and then
+      # https://circleci.com/docs/2.0/circleci-images/#nodejs
       - image: circleci/node:9.9
 
     branches:
@@ -11,9 +13,7 @@ jobs:
 
     steps:
       - checkout
-      - run: npm set registry https://registry.npmjs.org/
-      - run: npm config set @types:registry https://registry.npmjs.org/
       - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
-      - run: npm install --only=dev
+      - run: npm i -D
       - run: npm t
       - run: npm publish
